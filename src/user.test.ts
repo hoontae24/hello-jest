@@ -1,4 +1,6 @@
 import {
+  getAgeUsingPromise,
+  getAgeUsingPromiseOnError,
   getNameUsingCallback,
   getNameUsingCallbackOnError,
   makeUser,
@@ -33,4 +35,26 @@ test("Get user's name using callback on error", (done) => {
     expect(name).toBeUndefined();
     done();
   });
+});
+
+test("Get user's age using promise", () => {
+  const user = makeUser("John", 30);
+  return getAgeUsingPromise(user).then((age) => expect(age).toBe(30));
+});
+
+test("Get user's age using promise matchers", () => {
+  const user = makeUser("John", 30);
+  expect(getAgeUsingPromise(user)).resolves.toBe(30);
+});
+
+test("Get user's age using promise matchers on error", () => {
+  const user = makeUser("John", 30);
+  expect(getAgeUsingPromiseOnError(user)).rejects.toThrow();
+  expect(getAgeUsingPromiseOnError(user)).rejects.toThrow("Error");
+});
+
+test("Get user's age using await", async () => {
+  const user = makeUser("John", 30);
+  const age = await getAgeUsingPromise(user);
+  expect(age).toBe(30);
 });

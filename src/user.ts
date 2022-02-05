@@ -25,3 +25,21 @@ export const getNameUsingCallbackOnError = (
     callback(new Error("Error"));
   }, 1000);
 };
+
+export const getAgeUsingPromise = async (user: User): Promise<number> => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(user.age);
+    }, 1000);
+  });
+};
+
+export const getAgeUsingPromiseOnError = async (
+  user: User
+): Promise<number> => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      rej(new Error("Error"));
+    }, 1000);
+  });
+};
