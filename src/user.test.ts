@@ -1,4 +1,5 @@
 import {
+  createUser,
   getAgeUsingPromise,
   getAgeUsingPromiseOnError,
   getNameUsingCallback,

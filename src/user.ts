@@ -43,3 +43,8 @@ export const getAgeUsingPromiseOnError = async (
     }, 1000);
   });
 };
+
+export const createUser = async (name: string): Promise<{ name: string }> => {
+  console.log("user created with name: ", name);
+  return { name };
+};

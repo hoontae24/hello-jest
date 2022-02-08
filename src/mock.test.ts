@@ -68,3 +68,29 @@ describe("mock function resolved value", () => {
     expect(data.name).toBe("Jackson");
   });
 });
+
+describe("mock to be called", () => {
+  const mockFn = jest.fn();
+
+  mockFn(10, 20);
+  mockFn();
+  mockFn(100, 200);
+
+  test("mock function called", () => {
+    expect(mockFn).toBeCalled();
+  });
+
+  test("mock function called 3 times", () => {
+    expect(mockFn).toBeCalledTimes(3);
+  });
+
+  test("mock function called with (10, 20)", () => {
+    expect(mockFn).toBeCalledWith();
+    expect(mockFn).toBeCalledWith(10, 20);
+    expect(mockFn).toBeCalledWith(100, 200);
+  });
+
+  test("mock function called with (100, 200) last", () => {
+    expect(mockFn).lastCalledWith(100, 200);
+  });
+});
